@@ -1,9 +1,13 @@
-import React from 'react'
-import { View, StyleSheet, ImageBackground, Text, Button, Alert } from 'react-native'
+import React, {useState} from 'react'
+import { View, StyleSheet, ImageBackground, Text, TouchableOpacity, Alert, TextInput } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 
 
 function login() {
+    // set user và password
+    const [username, setusername] = useState('username');
+    const [password, setpassword] = useState('password');
+
     return (
         <View style={styles.container}>
             <LinearGradient 
@@ -21,12 +25,24 @@ function login() {
                 <View style={styles.down1}>
                     <View style={styles.login}>
                         <View style={styles.textlogin}>
-                            <Text>set up khung đăng kí </Text>
-                            <Text>set up khung đăng kí </Text>
+                            <TextInput placeholder="user name" 
+                            onChangeText={Text=>setusername(Text)} 
+                            value={username}
+                            style={styles.TextInput}
+                            />
+                            <TextInput placeholder="password" 
+                            onChangeText={Text=>setpassword(Text)} 
+                            value={password}
+                            style={styles.TextInput}
+                            />
                         </View>
-                        <View style={styles.buttonlogin}>
-                            <Button title="LOGIN" onPress={()=>{Alert.alert("Login successed")}} style={styles.button} ></Button>
-                        </View>
+                        <TouchableOpacity style={styles.buttonlogin} activeOpacity={0.5} onPress={
+                            ()=>{
+                                Alert.alert("login successed")
+                            }}
+                            >
+                            <Text style={{fontWeight:'bold', color:'white'}}>LOGIN</Text>
+                        </TouchableOpacity>
                         
                     </View>
                 </View>
@@ -63,7 +79,7 @@ const styles = StyleSheet.create({
         flex:3, 
         alignItems: 'center',
         justifyContent: 'center',
-        
+        paddingTop:20,
     },
     down1:{
         flex:1,
@@ -83,7 +99,6 @@ const styles = StyleSheet.create({
     },
     login:{
         flex:1,
-        backgroundColor:'#dbd6d3',
         resizeMode: "cover",
         width: 250,
         height: 200,
@@ -92,13 +107,23 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     textlogin:{
-        flex:3,
+        flex:3,        
+        width:200,
+    },
+
+    TextInput:{
+        padding:10, 
+        fontWeight:'bold',
+        color:'#878685'
     },
     buttonlogin:{
         flex:1,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor: 'rgba(144, 150, 146,0.3)',
+        marginBottom: 15,
+        borderRadius: 30,
+        width:150,
     },
-    button:{
-        
-        
-    },
+   
 });
