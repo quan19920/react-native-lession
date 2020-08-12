@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { View, StyleSheet, ImageBackground, Text, TouchableOpacity, Alert, TextInput } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 
 function login() {
@@ -29,11 +30,15 @@ function login() {
                             onChangeText={Text=>setusername(Text)} 
                             value={username}
                             style={styles.TextInput}
+                            autoCapitalize="none"
+                            autoFocus={true}
                             />
                             <TextInput placeholder="password" 
                             onChangeText={Text=>setpassword(Text)} 
                             value={password}
                             style={styles.TextInput}
+                            // autoCapitalize="none"
+                            autoFocus={true}
                             />
                         </View>
                         <TouchableOpacity style={styles.buttonlogin} activeOpacity={0.5} onPress={
@@ -42,8 +47,15 @@ function login() {
                             }}
                             >
                             <Text style={{fontWeight:'bold', color:'white'}}>LOGIN</Text>
-                        </TouchableOpacity>
-                        
+                        </TouchableOpacity> 
+                        <TouchableOpacity activeOpacity={0.5} onPress={
+                            ()=>{
+                                Alert.alert("login successed")
+                            }}
+                            >
+                            <Text style={{fontWeight:'bold', color:'white', fontSize:15}}>Create Account  <FontAwesome5 name="arrow-right" size={15} color="white" /></Text>
+                        </TouchableOpacity> 
+                                               
                     </View>
                 </View>
                 <View style={styles.down2}></View>
@@ -87,7 +99,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width:320,
-        backgroundColor: "rgba(255,255,255,0.5)",
+        //backgroundColor: "rgba(255,255,255,0.5)",
         borderTopLeftRadius: 40,
         borderBottomRightRadius: 40,
         borderTopRightRadius: 40,
@@ -108,13 +120,22 @@ const styles = StyleSheet.create({
     },
     textlogin:{
         flex:3,        
-        width:200,
+        width:320,
     },
 
     TextInput:{
-        padding:10, 
         fontWeight:'bold',
-        color:'#878685'
+        color: 'white',
+        alignSelf: 'stretch',
+        backgroundColor: 'rgba(144, 150, 146,0.3)',
+        marginBottom: 15,
+        paddingHorizontal: 15,
+        borderRadius: 30,
+        paddingVertical: 10,
+        marginHorizontal: 30,
+        opacity: 0.5,
+        fontWeight: "bold",
+        
     },
     buttonlogin:{
         flex:1,
