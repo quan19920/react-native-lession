@@ -21,7 +21,7 @@ function login() {
                 height:1000,
               }}
            >        
-            <View style={styles.up}><ImageBackground source={require('./anh/tuha_logo.png')} style={styles.logo} /></View>
+            <View style={styles.up}><ImageBackground source={require('./../anh/tuha_logo.png')} style={styles.logo} /></View>
             <View style={styles.down}>
                 <View style={styles.down1}>
                     <View style={styles.login}>
