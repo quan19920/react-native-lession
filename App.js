@@ -7,7 +7,7 @@ import Login from './components/login'
 export default function App() {
   return (
     <View style={styles.container}>
-      <View><Login /></View>
+      <Login />
     </View>
   );
 }

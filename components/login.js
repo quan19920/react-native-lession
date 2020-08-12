@@ -37,7 +37,7 @@ function login() {
                             onChangeText={Text=>setpassword(Text)} 
                             value={password}
                             style={styles.TextInput}
-                            // autoCapitalize="none"
+                            autoCapitalize="none"
                             autoFocus={true}
                             />
                         </View>
@@ -53,7 +53,7 @@ function login() {
                                 Alert.alert("login successed")
                             }}
                             >
-                            <Text style={{fontWeight:'bold', color:'white', fontSize:15}}>Create Account  <FontAwesome5 name="arrow-right" size={15} color="white" /></Text>
+                            <Text style={{fontWeight:'bold', color:'white', fontSize:15}}>Create Account   <FontAwesome5 name="arrow-right" size={15} color="white" /></Text>
                         </TouchableOpacity> 
                                                
                     </View>
