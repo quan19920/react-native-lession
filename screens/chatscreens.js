@@ -1,10 +1,100 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity,Alert } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity,Alert, ScrollView, TouchableOpacityBase, FlatList } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants'
+import { Entypo } from '@expo/vector-icons'; 
 
+// data cho flatlist
+const DATA = [
+    {
+        id: "1",
+        imgUrl: 'https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg',
+        username: "username 1",
+        password: "password 1",
+        date:'2/10/2020',
+    },
+    {
+        id: "2",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 2",
+        password: "password 2",
+        date:'2/10/2020',
+    },
+    {
+        id: "3",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 3",
+        password: "password 3",
+        date:'2/10/2020',
+    },
+    {
+        id: "4",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 4",
+        password: "password 4",
+        date:'2/10/2020',
+    },
+    {
+        id: "5",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 5",
+        password: "password 5",
+        date:'2/10/2020',
+    },
+    {
+        id: "6",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 6",
+        password: "password 6",
+        date:'2/10/2020',
+    },
+    {
+        id: "7",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 7",
+        password: "password 7",
+        date:'2/10/2020',
+    },
+    {
+        id: "8",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 8",
+        password: "password 8",
+        date:'2/10/2020',
+    },
+    {
+        id: "9",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 9",
+        password: "password 9",
+        date:'2/10/2020',
+    },
+    {
+        id: "10",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 10",
+        password: "password 10",
+        date:'2/10/2020',
+    },
+    {
+        id: "11",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 11",
+        password: "password 11",
+        date:'2/10/2020',
+    },
+    {
+        id: "12",
+        imgUrl: "https://img2.thuthuatphanmem.vn/uploads/2018/11/29/anh-dep-kudo-shinichi_011206382.jpg",
+        username: "username 12",
+        password: "password 12",
+        date:'2/10/2020',
+    },
+     ];
+     
 
 function chatscreens() {
+
     return (
         <View style={styles.container}>
             <View style={styles.up}>
@@ -30,8 +120,35 @@ function chatscreens() {
                             <Text style={styles.textbutton}>Fanpage</Text>
 
                     </TouchableOpacity>
+                    {/* chỉ cần nhớ form này của flatlist */}
                 </View>
-                <View style={styles.down2}></View>
+                <View style={styles.down2}>
+                    <FlatList 
+                        data={DATA}
+                        renderItem={({item})=>(
+                            <TouchableOpacity style={styles.item} activeOpacity={0.5} onPress={()=>{
+                                Alert.alert('open chat successed')
+                            }}>
+                                <Image style={styles.imagechat} source={{uri:item.imgUrl}}/>
+                                <View>
+                                <Text style={styles.username}>{item.username}</Text>
+                                <Text style={styles.userpassword} >{item.password}</Text>
+                                </View>
+                        <Text style={styles.date}>{item.date}</Text>
+                            </TouchableOpacity>   
+                        )}
+                        keyExtractor={item=>item.id}// để sử dụng id như là một key
+                    ></FlatList>
+                    {/* nút dấu cộng */}
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        onPress={()=>{
+                            Alert.alert('more option')
+                        }}
+                        style={styles.TouchableOpacityStyle}>
+                        <Entypo name="circle-with-plus" size={60} color="#1b86bf" style={styles.FloatingButtonStyle} />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
@@ -43,6 +160,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         marginTop: Constants.statusBarHeight,
+        
     },
     up:{
         flex:1,
@@ -110,6 +228,56 @@ const styles = StyleSheet.create({
     },
     down2:{
         flex:5,
-        backgroundColor:'#31b32e'
+        //backgroundColor:'#31b32e',
+        alignItems:'stretch'
     },
+
+    username:{
+        fontSize:15,
+        paddingLeft:10,
+        fontWeight:'bold',
+        color:'#666363'
+    },
+    userpassword:{
+        fontSize:10,
+        paddingLeft:20,
+        color:'#666363'
+    },
+
+    item:{
+        flex:1,
+        borderColor:'#bab5b4',
+        borderTopWidth:1,
+        flexDirection:'row',
+        //marginHorizontal:20,
+        paddingTop:20,
+        paddingBottom:20,
+    },
+
+    imagechat:{
+        height:40,
+        width:40,
+        borderRadius:10,
+        marginLeft:15,
+    },
+
+    date:{
+        
+    },
+
+    TouchableOpacityStyle: {
+        position: 'absolute',
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 20,
+        bottom: 40,
+      },
+    
+      FloatingButtonStyle: {
+        width: 60,
+        height: 60,
+        //backgroundColor:'black'
+      },
 });
