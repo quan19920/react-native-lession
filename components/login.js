@@ -134,8 +134,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 30,
         opacity: 0.5,
-        fontWeight: "bold",
-        
     },
     buttonlogin:{
         flex:1,

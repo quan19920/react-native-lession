@@ -126,15 +126,19 @@ function chatscreens() {
                     <FlatList 
                         data={DATA}
                         renderItem={({item})=>(
-                            <TouchableOpacity style={styles.item} activeOpacity={0.5} onPress={()=>{
+                            <TouchableOpacity style={[styles.item, { justifyContent: 'space-between', alignItems: 'center' }]} activeOpacity={0.5} onPress={()=>{
                                 Alert.alert('open chat successed')
                             }}>
-                                <Image style={styles.imagechat} source={{uri:item.imgUrl}}/>
-                                <View>
-                                <Text style={styles.username}>{item.username}</Text>
-                                <Text style={styles.userpassword} >{item.password}</Text>
+                                <View style={{
+                                    flexDirection: 'row'
+                                }}>
+                                    <Image style={styles.imagechat} source={{uri:item.imgUrl}}/>
+                                    <View>
+                                        <Text style={styles.username}>{item.username}</Text>
+                                        <Text style={styles.userpassword} >{item.password}</Text>
+                                    </View>
                                 </View>
-                        <Text style={styles.date}>{item.date}</Text>
+                                <Text style={[styles.date, { paddingRight:10 }]}>{item.date}</Text>
                             </TouchableOpacity>   
                         )}
                         keyExtractor={item=>item.id}// để sử dụng id như là một key
@@ -241,7 +245,7 @@ const styles = StyleSheet.create({
     userpassword:{
         fontSize:10,
         paddingLeft:20,
-        color:'#666363'
+        color:'#666363'  
     },
 
     item:{
@@ -262,7 +266,7 @@ const styles = StyleSheet.create({
     },
 
     date:{
-        
+
     },
 
     TouchableOpacityStyle: {
