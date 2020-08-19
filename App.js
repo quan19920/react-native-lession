@@ -1,17 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants'
-import Login from './components/login'
-import Chatscreen from './screens/chatscreens'
-import Createaccount from './screens/createaccount'
-
+import Routes from './routes';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <Login /> */}
-      {/* <Chatscreen /> */}
-      <Createaccount />
+        <Routes />
     </View>
   );
 }
@@ -19,7 +14,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //marginTop: Constants.statusBarHeight,
+    marginTop: Constants.statusBarHeight,
   },
   
 });

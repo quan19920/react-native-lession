@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity,Alert, ScrollView, TouchableOpacityBase, FlatList } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants'
 import { Entypo } from '@expo/vector-icons'; 
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 // data cho flatlist
 const DATA = [
@@ -93,10 +93,17 @@ const DATA = [
      ];
      
 
-function chatscreens() {
+function chatscreens({navigation}) {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity 
+                onPress={()=>{
+                    navigation.replace('Login');
+                }}
+            >
+            <SimpleLineIcons name="logout" size={24} color="black" style={{paddingLeft:10,top:0}}  />
+            </TouchableOpacity>
             <View style={styles.up}>
                <Image source={require('./../anh/avarta.jpg')} style={styles.image}></Image>
                <Text style={styles.layoutuser}>user name</Text>
@@ -127,7 +134,7 @@ function chatscreens() {
                         data={DATA}
                         renderItem={({item})=>(
                             <TouchableOpacity style={[styles.item, { justifyContent: 'space-between', alignItems: 'center' }]} activeOpacity={0.5} onPress={()=>{
-                                Alert.alert('open chat successed')
+                                navigation.navigate('tabnavigator')
                             }}>
                                 <View style={{
                                     flexDirection: 'row'
@@ -150,7 +157,7 @@ function chatscreens() {
                             Alert.alert('more option')
                         }}
                         style={styles.TouchableOpacityStyle}>
-                        <Entypo name="circle-with-plus" size={60} color="#1b86bf" style={styles.FloatingButtonStyle} />
+                        <Entypo name="circle-with-plus" size={60} color="#0274ff" style={styles.FloatingButtonStyle} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -181,13 +188,13 @@ const styles = StyleSheet.create({
 
     layoutuser:{
         textTransform:'uppercase',
-        color:'#1c1c1c',
+        color: '#666363',
         paddingTop:5,
         fontWeight:"bold",
         fontSize:15,
     },
     layoutcareer:{
-        color:'#a89eab',
+        color:'#aba9a8',
         paddingTop:5,
         fontWeight:"bold",
     },
@@ -212,23 +219,26 @@ const styles = StyleSheet.create({
     },
 
     buttongroup:{
-        margin:25,
+        margin:20,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor: '#1b86bf',
+        backgroundColor: '#0274ff',
         marginBottom: 15,
         borderRadius: 30,
         width:150,
+        height:50,
 
     },
     buttonfanpage:{
-        margin:25,
+        margin:20,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor: '#1b86bf',
+        backgroundColor: '#0274ff',
         marginBottom: 15,
         borderRadius: 30,
         width:150,
+        height:50,
+
     },
     down2:{
         flex:5,
@@ -245,12 +255,12 @@ const styles = StyleSheet.create({
     userpassword:{
         fontSize:10,
         paddingLeft:20,
-        color:'#666363'  
+        color:'#aba9a8'  
     },
 
     item:{
         flex:1,
-        borderColor:'#bab5b4',
+        borderColor:'#ebe9e7',
         borderTopWidth:1,
         flexDirection:'row',
         //marginHorizontal:20,

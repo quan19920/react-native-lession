@@ -1,68 +1,74 @@
 import React, {useState} from 'react'
-import { View, StyleSheet, ImageBackground, Text, TouchableOpacity, Alert, TextInput } from 'react-native'
+import { View, StyleSheet, ImageBackground, Text, TouchableOpacity, Alert, TextInput, KeyboardAvoidingView,TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 
-function login() {
+function login({navigation}) {
     // set user và password
     const [username, setusername] = useState('username');
     const [password, setpassword] = useState('password');
 
     return (
-        <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}  behavior={Platform.OS == "ios" ? "padding" : "height"}
+        enabled={false}
+    >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient 
-            colors={['#2974FA', '#38ABFD', '#43D4FF']} 
-            style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                height:1000,
-              }}
-           >        
-            <View style={styles.up}><ImageBackground source={require('./../anh/tuha_logo.png')} style={styles.logo} /></View>
-            <View style={styles.down}>
-                <View style={styles.down1}>
-                    <View style={styles.login}>
-                        <View style={styles.textlogin}>
-                            <TextInput placeholder="user name" 
-                            onChangeText={Text=>setusername(Text)} 
-                            value={username}
-                            style={styles.TextInput}
-                            autoCapitalize="none"
-                            autoFocus={true}
-                            />
-                            <TextInput placeholder="password" 
-                            onChangeText={Text=>setpassword(Text)} 
-                            value={password}
-                            style={styles.TextInput}
-                            autoCapitalize="none"
-                            autoFocus={true}
-                            />
+                colors={['#2974FA', '#38ABFD', '#43D4FF']} 
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height:1000,
+                }}
+            >        
+                <View style={styles.up}><ImageBackground source={require('./../anh/tuha_logo.png')} style={styles.logo} /></View>
+                <View style={styles.down}>
+                    <View style={styles.down1}>
+                        <View style={styles.login}>
+                            <View style={styles.textlogin}>
+                                <TextInput 
+                                    placeholder="user name" 
+                                    onChangeText={Text=>setusername(Text)} 
+                                    // value={"kkk"}
+                                    style={styles.TextInput}
+                                />
+                                <TextInput 
+                                placeholder="password" 
+                                onChangeText={Text=>setpassword(Text)} 
+                                // value={""}
+                                style={styles.TextInput}
+                                //autoCapitalize="none"
+                                //autoFocus={true}
+                                />
+                            </View>
+                            <TouchableOpacity style={styles.buttonlogin} activeOpacity={0.5} onPress={
+                                ()=>{
+                                    if (username==='Quan' && password==="123456") {
+                                        navigation.replace('Chat')
+                                    } else {
+                                        Alert.alert('Login failed')
+                                    }
+                                }}
+                                >
+                                <Text style={{fontWeight:'bold', color:'white'}}>LOGIN</Text>
+                            </TouchableOpacity> 
+                            <TouchableOpacity activeOpacity={0.5} onPress={
+                                ()=>{
+                                    navigation.replace('create account')
+                                }}
+                                >
+                                <Text style={{fontWeight:'bold', color:'white', fontSize:15}}>Create Account   <FontAwesome5 name="arrow-right" size={15} color="white" /></Text>
+                            </TouchableOpacity>              
                         </View>
-                        <TouchableOpacity style={styles.buttonlogin} activeOpacity={0.5} onPress={
-                            ()=>{
-                                Alert.alert("login successed")
-                            }}
-                            >
-                            <Text style={{fontWeight:'bold', color:'white'}}>LOGIN</Text>
-                        </TouchableOpacity> 
-                        <TouchableOpacity activeOpacity={0.5} onPress={
-                            ()=>{
-                                Alert.alert("login successed")
-                            }}
-                            >
-                            <Text style={{fontWeight:'bold', color:'white', fontSize:15}}>Create Account   <FontAwesome5 name="arrow-right" size={15} color="white" /></Text>
-                        </TouchableOpacity> 
-                                               
                     </View>
+                    <View style={styles.down2}></View>
                 </View>
-                <View style={styles.down2}></View>
-            </View>
-
-        </LinearGradient>
-        </View>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
     )
 }
 
@@ -133,7 +139,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         paddingVertical: 10,
         marginHorizontal: 30,
-        opacity: 0.5,
+        opacity: 0.6,
     },
     buttonlogin:{
         flex:1,

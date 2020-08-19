@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import { View, StyleSheet,Text, TextInput, ScrollView, TouchableOpacity, Alert } from 'react-native'
+import { View, StyleSheet,Text, TextInput, ScrollView, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
 import Constants from 'expo-constants'
 import { FontAwesome5 } from '@expo/vector-icons';
 
 
-function creataccount() {
+function creataccount({navigation}) {
     const [firstname, setfirstname] = useState('First Name');
     const [lastname, setlastname] = useState('Last name');
     const [address, setaddress] = useState('Address');
@@ -12,70 +12,80 @@ function creataccount() {
     const [email, setemail] = useState('Email');
     const [phonenumber, setphonenumber] = useState('Phone Number');
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
+        <KeyboardAvoidingView style={styles.container}
+         behavior={Platform.OS == "ios" ? "padding" : "height"}
+         enabled={false}
+        >
+            {/* <View style={styles.header}>
                 <FontAwesome5 name="arrow-left" size={24} color="#1b86bf" />
                 <View style={styles.title}>
                     <Text style={{fontSize:20, color:'#666363',fontWeight:'bold'}}>New Account</Text>
                 </View>
-            </View>
+            </View> */}
             <View style={styles.info}>
-                <Text style={{marginVertical:15,paddingHorizontal: 15, fontSize:25,color:'#666363',fontWeight:'bold'}}>Information</Text>
+                <Text style={{paddingHorizontal: 15, marginBottom:15 , fontSize:25,color:'#666363',fontWeight:'bold'}}>Information</Text>
                 <ScrollView>
                     <TextInput
+                        placeholder='First Name'
                         onChangeText={Text=>setfirstname(Text)}
                         value={firstname}
-                        autoCapitalize="none"
-                        autoFocus={true}
+                        //autoCapitalize="none"
+                        //autoFocus={true}
                         style={styles.infoinput}
                     ></TextInput>
                     <TextInput
+                        placeholder='Last Name'
                         onChangeText={Text=>setlastname(Text)}
                         value={lastname}
-                        autoCapitalize="none"
-                        autoFocus={true}
+                        //autoCapitalize="none"
+                        //autoFocus={true}
                         style={styles.infoinput}
                     ></TextInput>
                     <TextInput
+                        placeholder='Address'
                         onChangeText={Text=>setaddress(Text)}
                         value={address}
-                        autoCapitalize="none"
-                        autoFocus={true}
+                        //autoCapitalize="none"
+                        //autoFocus={true}
                         style={styles.infoinput}
                     ></TextInput>
                     <TextInput
+                        placeholder='City'
                         onChangeText={Text=>setcity(Text)}
                         value={city}
-                        autoCapitalize="none"
-                        autoFocus={true}
+                       // autoCapitalize="none"
+                        //autoFocus={true}
                         style={styles.infoinput}
                     ></TextInput>
                     <TextInput
+                        placeholder='Email'
                         onChangeText={Text=>setemail(Text)}
                         value={email}
-                        autoCapitalize="none"
-                        autoFocus={true}
+                        //autoCapitalize="none"
+                        //autoFocus={true}
                         style={styles.infoinput}
                     ></TextInput>
                     <TextInput
+                        placeholder='Phone Number'
                         onChangeText={Text=>setphonenumber(Text)}
                         value={phonenumber}
-                        autoCapitalize="none"
-                        autoFocus={true}
+                        //autoCapitalize="none"
+                        //autoFocus={true}
                         style={styles.infoinput}
                     ></TextInput>
                 </ScrollView>
             </View>
             <TouchableOpacity
                 onPress={()=>{
-                    Alert.alert('now you have an accont')
+                    Alert.alert('welcome'),
+                    navigation.replace('Chat')
                 }}
                 activeOpacity={0.4}
                 style={styles.done}
             >
                 <Text style={{fontSize:20, color:'white',fontWeight:'bold'}}>Done</Text>
             </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -117,13 +127,13 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         paddingHorizontal: 15,
         borderBottomWidth:1,
-        borderColor:'#ccc7c5',
+        borderColor:'#ebe9e7',
         paddingVertical: 10,
     },
 
     done:{
         flex:1,
-        backgroundColor:'#1b86bf',
+        backgroundColor:'#0274ff',
         //backgroundColor:'red'
         alignItems:'center',
         justifyContent:'center',
